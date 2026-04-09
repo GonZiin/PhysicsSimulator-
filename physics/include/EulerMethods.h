@@ -1,0 +1,16 @@
+//
+// Created by Gomes on 09/04/2026.
+//
+
+#ifndef PHYSICSSIMULATION_EULERMETHODS_H
+#define PHYSICSSIMULATION_EULERMETHODS_H
+
+
+
+class EulerMethods {
+
+};
+
+
+
+#endif //PHYSICSSIMULATION_EULERMETHODS_H

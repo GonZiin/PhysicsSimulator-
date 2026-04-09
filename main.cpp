@@ -2,7 +2,7 @@
 #include <SDL.h>
 
 #include "graphics/include/Window.h"
-#include "graphics/include/Circle.h"
+#include "physics/include/Particle.h"
 
 #define SCREEN_WIDTH  1920
 #define SCREEN_HEIGHT 1080
@@ -19,10 +19,15 @@ int main() {
         std::cout << "SDL could not initialize! SDL Error: " << SDL_GetError() << std::endl;
     }
 
+    Particle particle(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 30, {255, 255, 255, 255});
     bool simulationRunning = true;
     SDL_Event event;
 
+    Uint32 lastTime = SDL_GetTicks();
     while (simulationRunning) {
+        Uint32 currentTime = SDL_GetTicks();
+        double dt = (currentTime - lastTime) / 1000.0;
+        lastTime = currentTime;
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
                 simulationRunning = false;
@@ -31,8 +36,12 @@ int main() {
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
-        Circle circle(renderer, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 30, SDL_Color(255,255,255,255), true);
+
+        particle.updateState(dt);
+        particle.checkEdges(SCREEN_WIDTH, SCREEN_HEIGHT);
+        particle.drawParticle(renderer);
         SDL_RenderPresent(renderer);
+        SDL_Delay(16);
     }
 
     window.close();
