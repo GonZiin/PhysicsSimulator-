@@ -1,8 +1,16 @@
-//
-// Created by Gomes on 09/04/2026.
-//
-
 #ifndef PHYSICSSIMULATION_WINDOW_H
 #define PHYSICSSIMULATION_WINDOW_H
 
-#endif //PHYSICSSIMULATION_WINDOW_H
+#include <SDL.h>
+
+class RenderWindow {
+public:
+    RenderWindow(const char* title, int width, int height);
+    SDL_Renderer* GetRenderer();
+    void close();
+private:
+    SDL_Window* window;
+    SDL_Renderer* renderer;
+};
+
+#endif
