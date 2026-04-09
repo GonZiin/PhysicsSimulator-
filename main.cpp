@@ -2,6 +2,7 @@
 #include <SDL.h>
 
 #include "graphics/include/Window.h"
+#include "graphics/include/Circle.h"
 
 #define SCREEN_WIDTH  1920
 #define SCREEN_HEIGHT 1080
@@ -30,6 +31,7 @@ int main() {
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
+        Circle circle(renderer, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 30, SDL_Color(255,255,255,255), true);
         SDL_RenderPresent(renderer);
     }
 
